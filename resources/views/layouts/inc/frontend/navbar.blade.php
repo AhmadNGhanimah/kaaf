@@ -4,7 +4,7 @@
             <div class="row">
 
                 <div class="col-md-2 my-auto d-none d-md-block">
-                    <a href="{{ route('frontend.index') }}">
+                    <a href="">
                         <h5 class="brand-name">Task</h5>
                     </a>
                 </div>
@@ -12,7 +12,7 @@
                     <ul class="nav justify-content-end">
 
                         <li class="nav-item">
-                            <a class="nav-link" href="{{ route('frontend.category') }}">
+                            <a class="nav-link" href="">
                                 <i class="fa fa-shopping-cart"></i> Category
                             </a>
                         </li>
@@ -31,8 +31,8 @@
                             @endif
                         @else
                             <li class="nav-item">
-                                <a class="nav-link" href="{{ route('cart.index') }}">
-                                    <i class="fa fa-shopping-cart"></i> Cart ({{ $cartCount }})
+                                <a class="nav-link" href="">
+                                    <i class="fa fa-shopping-cart"></i> Cart
                                 </a>
                             </li>
                             <li class="nav-item dropdown">
