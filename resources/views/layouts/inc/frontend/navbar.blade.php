@@ -2,7 +2,6 @@
     <div class="top-navbar">
         <div class="container-fluid">
             <div class="row">
-
                 <div class="col-md-2 my-auto d-none d-md-block">
                     <a href="">
                         <h5 class="brand-name">Task</h5>
@@ -10,9 +9,8 @@
                 </div>
                 <div class="col-md-10 my-auto">
                     <ul class="nav justify-content-end">
-
                         <li class="nav-item">
-                            <a class="nav-link" href="">
+                            <a class="nav-link" href="{{ route('category.all') }}">
                                 <i class="fa fa-shopping-cart"></i> Category
                             </a>
                         </li>
@@ -31,25 +29,24 @@
                             @endif
                         @else
                             <li class="nav-item">
-                                <a class="nav-link" href="">
+                                <a class="nav-link" href="{{ route('cart.index') }}">
                                     <i class="fa fa-shopping-cart"></i> Cart
                                 </a>
                             </li>
                             <li class="nav-item dropdown">
-                                <a class="nav-link dropdown-toggle text-capitalize" href="#" id="navbarDropdown"
-                                    role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                                <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button"
+                                    data-bs-toggle="dropdown" aria-expanded="false">
                                     <i class="fa fa-user"></i> {{ Auth::user()->name }}
                                 </a>
                                 <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
+                                    {{-- <li><a class="dropdown-item" href="{{ route('profile') }}">Profile</a></li> --}}
                                     <li>
                                         <a class="dropdown-item" href="{{ route('logout') }}"
-                                            onclick="event.preventDefault();
-                                            document.getElementById('logout-form').submit();">
-                                            <i class="fa fa-sign-out"></i> {{ __('Logout') }}
-                                        </a>
+                                            onclick="event.preventDefault(); document.getElementById('logout-form').submit();">Logout</a>
                                     </li>
                                 </ul>
                             </li>
+
 
                             <form id="logout-form" action="{{ route('logout') }}" method="POST" class="d-none">
                                 @csrf

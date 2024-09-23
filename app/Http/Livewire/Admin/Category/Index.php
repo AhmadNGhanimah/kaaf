@@ -34,15 +34,13 @@ class Index extends Component
 
             session()->flash('success', 'Category deleted successfully');
             $this->category_id = null;
-
-            // Just For Make refresh to fix modal issue not hide
             return redirect()->route('category');
         }
     }
 
     public function render()
     {
-        $categories = Category::orderBy('id', 'ASC')->paginate(5);
+        $categories = Category::orderBy('id', 'desc')->paginate(5);
         return view('livewire.admin.category.index', compact('categories'));
     }
 }

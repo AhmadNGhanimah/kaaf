@@ -2,10 +2,12 @@
 
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
+use App\Http\Livewire\User\CartComponent;
+use App\Http\Livewire\User\CategoryComponent;
 use App\Http\Controllers\Admin\UserController;
 use App\Http\Controllers\Admin\CategoryController;
 use App\Http\Controllers\Admin\DashboardController;
-
+use App\Http\Livewire\User\Checkout;
 
 /*
 |--------------------------------------------------------------------------
@@ -24,7 +26,18 @@ use App\Http\Controllers\Admin\DashboardController;
 // Other Routes
 Auth::routes();
 Route::get('/', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
+// User Routes
 
+
+Route::get('/category', [CategoryComponent::class, 'index'])->name('category.all');
+Route::get('/checkout', [Checkout::class, 'index'])->name('checkout');
+
+Route::middleware(['auth'])->group(function () {
+    Route::get('/cart', function () {
+        return view('pages.cart');
+    })->name('cart.index');
+});
+// End User Routes
 
 //  Admin Routes
 Route::prefix('admin')->middleware(['auth', 'isAdmin'])->group(function () {
