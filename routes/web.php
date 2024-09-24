@@ -1,13 +1,14 @@
 <?php
 
+use App\Http\Livewire\User\Checkout;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
 use App\Http\Livewire\User\CartComponent;
+use App\Http\Controllers\AdminAuthController;
 use App\Http\Livewire\User\CategoryComponent;
 use App\Http\Controllers\Admin\UserController;
 use App\Http\Controllers\Admin\CategoryController;
 use App\Http\Controllers\Admin\DashboardController;
-use App\Http\Livewire\User\Checkout;
 
 /*
 |--------------------------------------------------------------------------
@@ -29,7 +30,7 @@ Route::get('/', [App\Http\Controllers\HomeController::class, 'index'])->name('ho
 // User Routes
 
 
-Route::get('/category', [CategoryComponent::class, 'index'])->name('category.all');
+Route::get('/', [CategoryComponent::class, 'index'])->name('category.all');
 Route::get('/checkout', [Checkout::class, 'index'])->name('checkout');
 
 Route::middleware(['auth'])->group(function () {
@@ -39,19 +40,30 @@ Route::middleware(['auth'])->group(function () {
 });
 // End User Routes
 
-//  Admin Routes
-Route::prefix('admin')->middleware(['auth', 'isAdmin'])->group(function () {
-    Route::get('/dashboard', [DashboardController::class, 'index'])->name('dashboard');
-    Route::controller(CategoryController::class)->group(function () {
-        Route::get('/category', 'index')->name('category');
-        Route::get('/category/create', 'create')->name('category.create');
-        Route::post('/category', 'store')->name('category.store');
-        Route::get('/category/{category_id}/edit', 'edit')->name('category.edit');
-        Route::put('/category/{category_id}', 'update')->name('category.update');
-        Route::delete('/category/{category_id}', 'delete')->name('category.delete');
+// Admin Start
+Route::prefix('admin')->group(function () {
+    Route::middleware('guest:admin')->group(function () {
+        Route::get('/register', [AdminAuthController::class, 'showRegisterForm'])->name('admin.register');
+        Route::post('/register', [AdminAuthController::class, 'register'])->name('admin.register.post');
 
-        Route::get('/users', [UserController::class, 'index'])->name('users.index');
-        Route::post('/users/{id}', [UserController::class, 'toggleAdmin'])->name('users.toggleAdmin');
+        Route::get('/login', [AdminAuthController::class, 'showLoginForm'])->name('admin.login');
+        Route::post('/login', [AdminAuthController::class, 'login'])->name('admin.login.post');
+    });
+    Route::middleware('auth:admin')->group(function () {
+        Route::get('/dashboard', [DashboardController::class, 'index'])->name('admin.dashboard');
+        Route::post('/logout', [AdminAuthController::class, 'logout'])->name('admin.logout');
+        Route::middleware('isAdmin')->group(function () {
+            Route::controller(CategoryController::class)->group(function () {
+                Route::get('/category', 'index')->name('admin.category');
+                Route::get('/category/create', 'create')->name('admin.category.create');
+                Route::post('/category', 'store')->name('admin.category.store');
+                Route::get('/category/{category_id}/edit', 'edit')->name('admin.category.edit');
+                Route::put('/category/{category_id}', 'update')->name('admin.category.update');
+                Route::delete('/category/{category_id}', 'delete')->name('admin.category.delete');
+            });
+            Route::get('/users', [UserController::class, 'index'])->name('admin.users.index');
+            Route::post('/users/{id}', [UserController::class, 'toggleAdmin'])->name('admin.users.toggleAdmin');
+        });
     });
 });
-//  End Admin Routes
+// Admin End

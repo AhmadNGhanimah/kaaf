@@ -15,7 +15,7 @@
             <div class="card">
                 <div class="card-header">
                     <h3> Edit Category
-                        <a href="{{ route('category') }}" class="btn btn-sm btn-primary float-end text-white">Go To
+                        <a href="{{ route('admin.category') }}" class="btn btn-sm btn-primary float-end text-white">Go To
                             Back</a>
                     </h3>
                 </div>

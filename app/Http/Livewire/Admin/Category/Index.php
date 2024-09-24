@@ -34,7 +34,7 @@ class Index extends Component
 
             session()->flash('success', 'Category deleted successfully');
             $this->category_id = null;
-            return redirect()->route('category');
+            return redirect()->route('admin.category');
         }
     }
 

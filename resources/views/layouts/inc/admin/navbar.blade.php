@@ -4,7 +4,7 @@
             <div class="navbar-brand-inner-wrapper d-flex justify-content-between align-items-center w-100">
                 <a class="navbar-brand brand-logo" href="index.html">
                     {{-- <img src="images/logo.svg" alt="logo" /></a> --}}
-                    <a href="{{ route('dashboard') }}">
+                    <a href="{{ route('admin.dashboard') }}">
                         <h3>
                             Task</h3>
                     </a>
@@ -134,19 +134,24 @@
                     </a>
                     <div class="dropdown-menu dropdown-menu-right navbar-dropdown" aria-labelledby="profileDropdown">
                         {{-- <a class="dropdown-item">
-                            <i class="mdi mdi-settings text-primary"></i>
-                            Settings
-                        </a> --}}
-                        <a class="dropdown-item" href="{{ route('logout') }}"
+        <i class="mdi mdi-settings text-primary"></i>
+        Settings
+    </a> --}}
+
+                        <!-- Update this link to use the correct route for admin logout -->
+                        <a class="dropdown-item" href="{{ route('admin.logout') }}"
                             onclick="event.preventDefault();
-                                                     document.getElementById('logout-form').submit();">
+                 document.getElementById('logout-form').submit();">
                             <i class="mdi mdi-logout text-primary"></i> {{ __('Logout') }}
                         </a>
 
-                        <form id="logout-form" action="{{ route('logout') }}" method="POST" class="d-none">
+                        <!-- Update the form to point to the admin logout route -->
+                        <form id="logout-form" action="{{ route('admin.logout') }}" method="POST"
+                            style="display: none;">
                             @csrf
                         </form>
                     </div>
+
                 </li>
             </ul>
             <button class="navbar-toggler navbar-toggler-right d-lg-none align-self-center" type="button"

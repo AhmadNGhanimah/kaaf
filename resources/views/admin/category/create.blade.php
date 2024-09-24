@@ -15,12 +15,12 @@
             <div class="card">
                 <div class="card-header">
                     <h3> Add Category
-                        <a href="{{ route('category') }}" class="btn btn-sm btn-primary float-end text-white">Go To
+                        <a href="" class="btn btn-sm btn-primary float-end text-white">Go To
                             Back</a>
                     </h3>
                 </div>
                 <div class="card-body">
-                    <form action="{{ route('category.store') }}" method="POST" enctype="multipart/form-data">
+                    <form action="{{ route('admin.category.store') }}" method="POST" enctype="multipart/form-data">
                         @csrf
                         <div class="row">
                             <div class="col-md-6 mb-3">

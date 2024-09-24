@@ -5,6 +5,8 @@ namespace App\Http\Controllers\Auth;
 use App\Http\Controllers\Controller;
 use Illuminate\Foundation\Auth\AuthenticatesUsers;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Http\Request;
+
 
 class LoginController extends Controller
 {
@@ -27,13 +29,10 @@ class LoginController extends Controller
      * @var string
      */
     // protected $redirectTo = '/home';
-    public function authenticated()
+    protected function authenticated(Request $request, $user)
     {
-        if (Auth::user()->role_as == '1') {
-            return redirect()->route('dashboard')->with('messageAdmin', 'You are logged in as Admin');
-        } else {
-            return redirect()->route('category.all')->with('status', 'You are logged in as User');
-        }
+
+        return redirect()->route('category.all');
     }
 
     /**

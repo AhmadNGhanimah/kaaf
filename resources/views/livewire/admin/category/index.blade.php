@@ -28,7 +28,8 @@
             <div class="card">
                 <div class="card-header">
                     <h3>Category
-                        <a href="{{ route('category.create') }}" class="btn btn-sm btn-primary float-end text-white">Add
+                        <a href="{{ route('admin.category.create') }}"
+                            class="btn btn-sm btn-primary float-end text-white">Add
                             Category</a>
                     </h3>
                 </div>

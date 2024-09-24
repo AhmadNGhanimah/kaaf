@@ -17,9 +17,10 @@ class AdminMiddleware
      */
     public function handle(Request $request, Closure $next)
     {
-        if (!Auth::user()->role_as == '1') {
-            return redirect()->route('home')->with('status', 'Access Denied , You are not authorized to access this page');
+        if (!auth()->guard('admin')->check()) {
+            return redirect('/login');
         }
+
         return $next($request);
     }
 }

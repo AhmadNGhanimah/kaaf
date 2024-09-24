@@ -2,7 +2,7 @@
       <nav class="sidebar sidebar-offcanvas" id="sidebar">
           <ul class="nav">
               <li class="nav-item">
-                  <a class="nav-link" href="{{ route('dashboard') }}">
+                  <a class="nav-link" href="{{ route('admin.dashboard') }}">
                       <i class="mdi mdi-home menu-icon"></i>
                       <span class="menu-title">Dashboard</span>
                   </a>
@@ -16,21 +16,21 @@
                   </a>
                   <div class="collapse" id="ui-basic">
                       <ul class="nav flex-column sub-menu">
-                          <li class="nav-item"> <a class="nav-link" href="{{ route('category') }}">View
+                          <li class="nav-item"> <a class="nav-link" href="{{ route('admin.category') }}">View
                                   Category</a></li>
-                          <li class="nav-item"> <a class="nav-link" href="{{ route('category.create') }}">Add
+                          <li class="nav-item"> <a class="nav-link" href="{{ route('admin.category.create') }}">Add
                                   Category</a>
                           </li>
 
                       </ul>
                   </div>
               </li>
-              <li class="nav-item">
-                  <a class="nav-link" href="{{ route('users.index') }}">
+              {{-- <li class="nav-item">
+                  <a class="nav-link" href="">
                       <i class="mdi mdi-chart-pie menu-icon"></i>
                       <span class="menu-title">Users</span>
                   </a>
-              </li>
+              </li> --}}
               {{-- <li class="nav-item">
                   <a class="nav-link" href="pages/forms/basic_elements.html">
                       <i class="mdi mdi-view-headline menu-icon"></i>
